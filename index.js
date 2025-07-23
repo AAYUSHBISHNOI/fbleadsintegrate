@@ -7,7 +7,7 @@ dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
-app.use("/", webhookRoutes);
+app.use("/", webhookRoutes); // Mount all routes
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

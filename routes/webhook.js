@@ -1,11 +1,13 @@
-const express = require("express");
-const router = express.Router();
-const {
-  verifyWebhook,
-  receiveWebhook,
-} = require("../controllers/facebookController");
+// GET /webhook
+app.get("/webhook", (req, res) => {
+  const mode = req.query["hub.mode"];
+  const token = req.query["hub.verify_token"];
+  const challenge = req.query["hub.challenge"];
 
-router.get("/webhook", verifyWebhook);
-router.post("/webhook", receiveWebhook);
-
-module.exports = router;
+  if (mode === "subscribe" && token === process.env.VERIFY_TOKEN) {
+    console.log("Webhook Verified");
+    res.status(200).send(challenge);
+  } else {
+    res.sendStatus(403);
+  }
+});
