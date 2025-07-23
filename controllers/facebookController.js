@@ -35,7 +35,7 @@ const receiveWebhook = async (req, res) => {
             await appendToGoogleSheet(formatted);
             console.log("✅ Lead data saved to Google Sheet");
           } catch (error) {
-            console.error("❌ Error fetching lead data:", error.response?.data || error.message);
+            console.error(" Error fetching lead data:", error.response?.data || error.message);
           }
         }
       }
