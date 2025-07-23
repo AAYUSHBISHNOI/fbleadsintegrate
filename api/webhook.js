@@ -5,7 +5,9 @@ require("dotenv").config();
 const app = express();
 const router = express.Router();
 
-// ✅ This MUST exist for Facebook verification
+ 
+
+
 router.get("/webhook", (req, res) => {
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
@@ -19,6 +21,6 @@ router.get("/webhook", (req, res) => {
   }
 });
 
-app.use("/api", router); // required for serverless
+app.use("/api", router);  
 
 module.exports = serverless(app);
